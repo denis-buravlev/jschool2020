@@ -2,11 +2,11 @@ package com.dsr.jschool.data.dto;
 
 import java.util.Objects;
 
-public class TestDto {
+public class MsgDto {
 
     private String msg;
 
-    public TestDto(String msg) {
+    public MsgDto(String msg) {
         this.msg = msg;
     }
 
@@ -22,8 +22,8 @@ public class TestDto {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        TestDto testDto = (TestDto) o;
-        return Objects.equals(msg, testDto.msg);
+        MsgDto msgDto = (MsgDto) o;
+        return Objects.equals(msg, msgDto.msg);
     }
 
     @Override

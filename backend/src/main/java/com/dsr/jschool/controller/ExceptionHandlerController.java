@@ -1,6 +1,6 @@
 package com.dsr.jschool.controller;
 
-import com.dsr.jschool.data.dto.TestDto;
+import com.dsr.jschool.data.dto.MsgDto;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -13,7 +13,7 @@ public class ExceptionHandlerController {
     @ExceptionHandler(RuntimeException.class)
     @ResponseBody
     @ResponseStatus(HttpStatus.FORBIDDEN)
-    public TestDto runtimeExceptionHandler(RuntimeException e) {
-        return new TestDto(e.getMessage());
+    public MsgDto runtimeExceptionHandler(RuntimeException e) {
+        return new MsgDto(e.getMessage());
     }
 }
