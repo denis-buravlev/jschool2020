@@ -1,13 +1,16 @@
-package com.dsr.jschool.data.entity;
+package com.dsr.jschool.data.dto;
 
-import javax.persistence.*;
+public class DeviceDto {
 
-@Entity
-@Table(name = "device", schema = "public")
-public class Device {
+    public DeviceDto() {
+    }
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    public DeviceDto(Long id, String name, String description) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+    }
+
     private Long id;
     private String name;
     private String description;
@@ -41,11 +44,11 @@ public class Device {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Device device = (Device) o;
+        DeviceDto deviceDto = (DeviceDto) o;
 
-        if (id != null ? !id.equals(device.id) : device.id != null) return false;
-        if (name != null ? !name.equals(device.name) : device.name != null) return false;
-        return description != null ? description.equals(device.description) : device.description == null;
+        if (id != null ? !id.equals(deviceDto.id) : deviceDto.id != null) return false;
+        if (name != null ? !name.equals(deviceDto.name) : deviceDto.name != null) return false;
+        return description != null ? description.equals(deviceDto.description) : deviceDto.description == null;
     }
 
     @Override

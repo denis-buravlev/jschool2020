@@ -1,0 +1,13 @@
+databaseChangeLog:
+  - changeSet:
+      id: 2
+      author: dburavlev
+      changes:
+        - addColumn:
+            tableName: device
+            columns:
+              - column:
+                  name: description
+                  type: VARCHAR
+                  constraints:
+                    nullable: true
