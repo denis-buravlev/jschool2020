@@ -1,0 +1,89 @@
+databaseChangeLog:
+  - changeSet:
+      id: 3
+      author: dburavlev
+      changes:
+        - addColumn:
+            tableName: device
+            columns:
+              - column:
+                  name: owner_id
+                  type: BIGINT
+                  constraints:
+                    nullable: true
+        - createTable:
+            tableName: user
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: VARCHAR
+                  constraints:
+                    nullable: false
+              - column:
+                  name: password
+                  type: VARCHAR
+                  constraints:
+                    nullable: false
+        - createTable:
+            tableName: role
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: VARCHAR
+                  constraints:
+                    nullable: false
+        - createTable:
+            tableName: user_role
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: user_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: role_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+        - addForeignKeyConstraint:
+            constraintName: fk_device_user
+            baseTableName: device
+            baseColumnNames: owner_id
+            referencedTableName: user
+            referencedColumnNames: id
+            validate: true
+        - addForeignKeyConstraint:
+            constraintName: fk_user_role
+            baseTableName: user_role
+            baseColumnNames: role_id
+            referencedTableName: role
+            referencedColumnNames: id
+            validate: true
+        - addForeignKeyConstraint:
+            constraintName: fk_role_user
+            baseTableName: user_role
+            baseColumnNames: user_id
+            referencedTableName: user
+            referencedColumnNames: id
+            validate: true

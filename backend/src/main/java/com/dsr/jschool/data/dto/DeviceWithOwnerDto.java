@@ -1,20 +1,20 @@
-package com.dsr.jschool.data.entity;
+package com.dsr.jschool.data.dto;
 
-import javax.persistence.*;
+public class DeviceWithOwnerDto {
 
-@Entity
-@Table(name = "device", schema = "public")
-public class Device {
+    public DeviceWithOwnerDto() {
+    }
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    public DeviceWithOwnerDto(Long id, String name, String description) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+    }
+
     private Long id;
     private String name;
     private String description;
-
-    @ManyToOne()
-    @JoinColumn(name = "ownerId")
-    private User owner;
+    private UserDto owner;
 
     public Long getId() {
         return id;
@@ -40,25 +40,26 @@ public class Device {
         this.description = description;
     }
 
-    public User getOwner() {
+    public UserDto getOwner() {
         return owner;
     }
 
-    public void setOwner(User owner) {
+    public void setOwner(UserDto owner) {
         this.owner = owner;
     }
+
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Device device = (Device) o;
+        DeviceWithOwnerDto that = (DeviceWithOwnerDto) o;
 
-        if (id != null ? !id.equals(device.id) : device.id != null) return false;
-        if (name != null ? !name.equals(device.name) : device.name != null) return false;
-        if (description != null ? !description.equals(device.description) : device.description != null) return false;
-        return owner != null ? owner.equals(device.owner) : device.owner == null;
+        if (id != null ? !id.equals(that.id) : that.id != null) return false;
+        if (name != null ? !name.equals(that.name) : that.name != null) return false;
+        if (description != null ? !description.equals(that.description) : that.description != null) return false;
+        return owner != null ? owner.equals(that.owner) : that.owner == null;
     }
 
     @Override
