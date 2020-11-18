@@ -2,7 +2,6 @@ package com.dsr.jschool.service;
 
 import com.dsr.jschool.data.entity.Device;
 import com.dsr.jschool.data.repository.DeviceRepository;
-import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
