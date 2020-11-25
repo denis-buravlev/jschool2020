@@ -3,8 +3,10 @@ package com.dsr.jschool.controller;
 import com.dsr.jschool.data.dto.DeviceDto;
 import com.dsr.jschool.data.dto.MsgDto;
 import com.dsr.jschool.data.mapper.DeviceMapper;
+import com.dsr.jschool.data.mapper.Mapper;
 import com.dsr.jschool.service.DeviceService;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
@@ -15,18 +17,19 @@ import static org.springframework.web.bind.annotation.RequestMethod.*;
 public class DeviceController {
 
     private final DeviceService deviceService;
-    private final DeviceMapper deviceMapper;
+    private final Mapper mapper;
 
     public DeviceController(
             DeviceService deviceService,
-            DeviceMapper deviceMapper) {
+            DeviceMapper deviceMapper,
+            Mapper mapper) {
         this.deviceService = deviceService;
-        this.deviceMapper = deviceMapper;
+        this.mapper = mapper;
     }
 
     @RequestMapping(method = GET, path = "")
     public List<DeviceDto> getDevices() {
-        return deviceMapper.toDeviceDto(deviceService.getAllDevices());
+        return mapper.convertList(deviceService.getAllDevices(), DeviceDto.class);
     }
 
     @RequestMapping(method = GET, path = "/:id")

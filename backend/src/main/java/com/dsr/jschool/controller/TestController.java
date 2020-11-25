@@ -1,11 +1,14 @@
 package com.dsr.jschool.controller;
 
 import com.dsr.jschool.data.dto.DeviceWithOwnerDto;
+import com.dsr.jschool.data.dto.MsgDto;
 import com.dsr.jschool.data.dto.UserDto;
 import com.dsr.jschool.data.entity.User;
 import com.dsr.jschool.data.repository.DeviceRepository;
 import com.dsr.jschool.data.repository.RoleRepository;
 import com.dsr.jschool.data.repository.UserRepository;
+import com.dsr.jschool.security.CustomUserDetails;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -65,6 +68,13 @@ public class TestController {
                 .map((role) -> {
                     return "ID: " + role.getId() + " Name: " + role.getName();
                 }).collect(Collectors.toList());
+    }
+
+    @RequestMapping(method = GET, path = "/user/1")
+    public MsgDto testUser(Authentication authentication) {
+        var details = (CustomUserDetails) authentication.getPrincipal();
+        var username = details.getUsername();
+        return new MsgDto(username);
     }
 
 }
