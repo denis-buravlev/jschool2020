@@ -2,6 +2,7 @@ package com.dsr.jschool.service;
 
 import com.dsr.jschool.data.entity.User;
 import com.dsr.jschool.data.repository.UserRepository;
+import com.dsr.jschool.exception.NotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -24,5 +25,9 @@ public class UserService {
             }
         }
         return null;
+    }
+
+    public User findById(Long id) {
+        return userRepository.findById(id).orElseThrow(NotFoundException::new);
     }
 }

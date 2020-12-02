@@ -22,6 +22,9 @@ public class Mapper {
 
     @SuppressWarnings("unchecked")
     public <IN, OUT> OUT convert(IN obj, Class<OUT> destClass) {
+        if (obj == null) {
+            return null;
+        }
         var mapper = (ObjectMapper<IN, OUT>)mappersMap.get(new MappingKey(obj.getClass(), destClass));
         if (mapper == null) {
             throw new RuntimeException("Unsupported mapper. " + obj.getClass() + " -> " + destClass);

@@ -38,10 +38,14 @@ public class JwtProvider {
                 .plusDays(15)
                 .atStartOfDay(ZoneId.systemDefault()).toInstant()
         );
+        String rolesClaim = roles.stream()
+                .map(Role::getName)
+                .collect(Collectors.joining(","));
 
         return Jwts.builder()
+                .setExpiration(exDate)
                 .setSubject(login)
-                .claim("roles", roles.stream().map(Role::getName).collect(Collectors.joining(",")))
+                .claim("roles", rolesClaim)
                 .signWith(key)
                 .compact();
     }

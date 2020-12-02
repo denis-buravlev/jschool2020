@@ -1,6 +1,6 @@
 package com.dsr.jschool.controller;
 
-import com.dsr.jschool.data.dto.DeviceWithOwnerDto;
+import com.dsr.jschool.data.dto.device.DeviceWithOwnerDto;
 import com.dsr.jschool.data.dto.MsgDto;
 import com.dsr.jschool.data.dto.UserDto;
 import com.dsr.jschool.data.entity.User;
