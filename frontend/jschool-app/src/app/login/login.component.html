@@ -1,0 +1,15 @@
+<div *ngIf="!isAuthenticated" class="container">
+  <form>
+    <label >Login</label>
+    <input [(ngModel)]="login" type="text" id="login" name="login" placeholder="Login">
+
+    <label>Password</label>
+    <input [(ngModel)]="password" type="text" id="password" name="password" placeholder="Password">
+
+    <input (click)="onSubmit(login, password)" type="button" value="Submit">
+  </form>
+</div>
+
+<div *ngIf="isAuthenticated" class="container">
+  <p>You have already authorized!</p>
+</div>

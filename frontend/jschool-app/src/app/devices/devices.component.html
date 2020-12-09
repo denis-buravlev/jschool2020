@@ -1,0 +1,27 @@
+<div class="container">
+  <form>
+    <label >Name</label>
+    <input [(ngModel)]="currentDevice.name" type="text" id="name" name="name" placeholder="Name">
+
+    <label>Description</label>
+    <input [(ngModel)]="currentDevice.description" type="text" id="descr" name="descr" placeholder="Description">
+
+    <input (click)="onSave(currentDevice)" type="button" value="Save">
+    <input (click)="onClear()" type="button" value="Clear">
+  </form>
+</div>
+
+<table class="table">
+  <tr>
+    <th>ID</th>
+    <th>Name</th>
+    <th>Description</th>
+    <th></th>
+  </tr>
+  <tr *ngFor="let device of devices" (click)="onSetDevice(device)">
+    <td>{{ device.id }}</td>
+    <td>{{ device.name }}</td>
+    <td>{{ device.description }}</td>
+    <td (click)="onDelete(device.id)">Delete</td>
+  </tr>
+</table>
