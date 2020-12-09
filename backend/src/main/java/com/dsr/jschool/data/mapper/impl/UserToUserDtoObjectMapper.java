@@ -9,6 +9,9 @@ import org.springframework.stereotype.Component;
 public class UserToUserDtoObjectMapper extends BaseObjectMapper<User, UserDto> {
     @Override
     public UserDto convert(User obj) {
+        if (obj == null) {
+            return null;
+        }
         var result = new UserDto();
         result.setId(obj.getId());
         result.setName(obj.getName());

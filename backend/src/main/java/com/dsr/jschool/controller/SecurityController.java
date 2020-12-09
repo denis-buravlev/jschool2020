@@ -7,7 +7,6 @@ import com.dsr.jschool.data.repository.RoleRepository;
 import com.dsr.jschool.data.repository.UserRepository;
 import com.dsr.jschool.security.JwtProvider;
 import com.dsr.jschool.service.UserService;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,7 +19,7 @@ import static org.springframework.http.HttpStatus.CREATED;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 @RestController
-@RequestMapping("/security")
+@RequestMapping("/api/v1/security")
 public class SecurityController {
 
     private final RoleRepository roleRepository;
